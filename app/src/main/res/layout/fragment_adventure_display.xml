@@ -15,7 +15,7 @@
             android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:backgroundTint="#33691E"
+            android:backgroundTint="#004D40"
             android:text="Task 1" />
 
         <Button
@@ -29,7 +29,7 @@
             android:id="@+id/button5"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:backgroundTint="#004D40"
+            android:backgroundTint="#33691E"
             android:text="Task 3" />
 
         <View
