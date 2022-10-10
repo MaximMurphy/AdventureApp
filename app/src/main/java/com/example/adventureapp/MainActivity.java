@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -11,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private Button settingsButton;
     private Button startAdventureButton;
     private Button pastAdventuresButton;
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         startAdventureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
+                Log.i(TAG, TAG + " - startAdventureButton onCreate");
                 openAdventureActivity();
             }
         });
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         pastAdventuresButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
+                Log.i(TAG, TAG + " - pastAdventureButton onCreate");
                 openPastAdventuresActivity();
             }
         });
@@ -37,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
+                Log.i(TAG, TAG + " - settingsButton onCreate");
                 openSettingsActivity();
             }
         });
