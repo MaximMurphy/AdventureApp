@@ -8,10 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class HomePageActivity extends AppCompatActivity {
-    private Button settingsButton;
-    private Button startAdventureButton;
-    private Button pastAdventuresButton;
+    private FirebaseAuth mAuth;
+    private Button settingsButton, startAdventureButton, pastAdventuresButton, signOutButton;
     private static final String TAG = "HomePageActivity";
 
     @Override
@@ -19,26 +21,34 @@ public class HomePageActivity extends AppCompatActivity {
         Log.i(TAG, TAG + " - onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+        mAuth = FirebaseAuth.getInstance();
+        signOutButton = findViewById(R.id.signOutButton);
+        startAdventureButton = findViewById(R.id.startAdventureButton);
+        pastAdventuresButton = findViewById(R.id.pastAdventuresButton);
+        settingsButton = findViewById(R.id.settingsButton);
+
         setOnClickListeners();
     }
 
     public void setOnClickListeners(){
-        startAdventureButton = (Button) findViewById(R.id.startAdventureButton);
         startAdventureButton.setOnClickListener(v -> {
             Log.i(TAG, TAG + " - startAdventureButton onCreate");
             openAdventureActivity();
         });
 
-        pastAdventuresButton = (Button) findViewById(R.id.pastAdventuresButton);
         pastAdventuresButton.setOnClickListener(v -> {
             Log.i(TAG, TAG + " - pastAdventureButton onCreate");
             openPastAdventuresActivity();
         });
 
-        settingsButton = (Button) findViewById(R.id.settingsButton);
         settingsButton.setOnClickListener(v -> {
             Log.i(TAG, TAG + " - settingsButton onCreate");
             openSettingsActivity();
+        });
+
+        signOutButton.setOnClickListener(v -> {
+            Log.i(TAG, TAG + " - settingsButton onCreate");
+            signOut();
         });
     }
 
@@ -55,6 +65,12 @@ public class HomePageActivity extends AppCompatActivity {
     public void openSettingsActivity(){
         Intent intent = new Intent (this, SettingsActivity.class);
         startActivity(intent);
+    }
+
+    public void signOut() {
+        mAuth.signOut();
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
     }
 
     public void onDestroy() {

@@ -15,8 +15,13 @@
         <entry key="app/src/main/res/drawable/person_outline.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/text_box_border.xml" value="0.228" />
         <entry key="app/src/main/res/layout/activity_home_page.xml" value="0.13541666666666666" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.19701086956521738" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.3040512084960938" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_new_user.xml" value="0.10815602836879433" />
+        <entry key="app/src/main/res/layout/activity_past_adventures.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.2783538818359375" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/settings_activity.xml" value="0.1" />
       </map>
     </option>
   </component>
