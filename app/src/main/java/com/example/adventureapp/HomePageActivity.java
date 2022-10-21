@@ -8,42 +8,37 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class HomePageActivity extends AppCompatActivity {
     private Button settingsButton;
     private Button startAdventureButton;
     private Button pastAdventuresButton;
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "HomePageActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i(TAG, TAG + " - onCreate");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home_page);
+        setOnClickListeners();
+    }
 
+    public void setOnClickListeners(){
         startAdventureButton = (Button) findViewById(R.id.startAdventureButton);
-        startAdventureButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                Log.i(TAG, TAG + " - startAdventureButton onCreate");
-                openAdventureActivity();
-            }
+        startAdventureButton.setOnClickListener(v -> {
+            Log.i(TAG, TAG + " - startAdventureButton onCreate");
+            openAdventureActivity();
         });
 
         pastAdventuresButton = (Button) findViewById(R.id.pastAdventuresButton);
-        pastAdventuresButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                Log.i(TAG, TAG + " - pastAdventureButton onCreate");
-                openPastAdventuresActivity();
-            }
+        pastAdventuresButton.setOnClickListener(v -> {
+            Log.i(TAG, TAG + " - pastAdventureButton onCreate");
+            openPastAdventuresActivity();
         });
 
         settingsButton = (Button) findViewById(R.id.settingsButton);
-        settingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                Log.i(TAG, TAG + " - settingsButton onCreate");
-                openSettingsActivity();
-            }
+        settingsButton.setOnClickListener(v -> {
+            Log.i(TAG, TAG + " - settingsButton onCreate");
+            openSettingsActivity();
         });
     }
 
@@ -63,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onDestroy() {
-
         super.onDestroy();
-
     }
 }
