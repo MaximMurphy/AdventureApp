@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdventureActivity">
+    tools:context=".activities.AdventureActivity">
 
     <TextView
         android:id="@+id/textView2"
@@ -26,7 +26,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView3"
-        android:name="com.example.adventureapp.AdventureDisplayFragment"
+        android:name="com.example.adventureapp.fragments.AdventureDisplayFragment"
         android:layout_width="341dp"
         android:layout_height="549dp"
         android:layout_marginTop="25dp"
@@ -35,5 +35,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.319" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

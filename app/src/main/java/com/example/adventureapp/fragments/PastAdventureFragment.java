@@ -1,4 +1,4 @@
-package com.example.adventureapp;
+package com.example.adventureapp.fragments;
 
 import android.os.Bundle;
 
@@ -9,13 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.adventureapp.R;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link PastAdventureFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class PastAdventureFragment extends Fragment {
-    public static String TAG = "PastAdventureFragment";
+    private static String TAG = "PastAdventureFragment";
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -60,7 +62,8 @@ public class PastAdventureFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        Log.d(TAG, TAG + " on create view");
+        super.onCreateView(inflater, container, savedInstanceState);
         if (container != null) {
             container.removeAllViews();
         }

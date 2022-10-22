@@ -1,4 +1,4 @@
-package com.example.adventureapp;
+package com.example.adventureapp.model;
 
 public class Adventure {
 

@@ -1,4 +1,4 @@
-package com.example.adventureapp;
+package com.example.adventureapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,9 +13,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputEditText;
+import com.example.adventureapp.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
