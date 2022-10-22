@@ -8,11 +8,16 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.adventureapp.R;
+import com.example.adventureapp.dao.DAOAdventure;
 import com.example.adventureapp.fragments.AdventureDisplayFragment;
 import com.example.adventureapp.fragments.PastAdventureFragment;
+import com.example.adventureapp.model.Adventure;
+
+import java.util.ArrayList;
 
 public class PastAdventuresActivity extends AppCompatActivity {
     private static final String TAG = "PastAdventuresActivity";
+    private DAOAdventure dao = new DAOAdventure();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, TAG + " onCreate");
@@ -20,11 +25,17 @@ public class PastAdventuresActivity extends AppCompatActivity {
         setContentView(R.layout.activity_past_adventures);
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        PastAdventureFragment fm2 = new PastAdventureFragment();
-        AdventureDisplayFragment fm3 = new AdventureDisplayFragment();
-        fragmentTransaction.add(R.id.pastAdventureFragmentContainer, (Fragment) fm2, "HELLO");
-//        fragmentTransaction.attach(fm3);
-        fragmentTransaction.add(R.id.pastAdventureFragmentContainer, (Fragment) fm3, "HELLO2");
+
+        ArrayList<Adventure> list = dao.getAllAdventures();
+        Log.d(TAG, list.toString());
+
+        for (Adventure adventure : list){
+            Log.d(TAG, "Adventure processed");
+            PastAdventureFragment frag = new PastAdventureFragment().newInstance(adventure.getUser());
+
+            fragmentTransaction.add(R.id.pastAdventureFragmentContainer, frag, adventure.getUser());
+        }
+
         fragmentTransaction.commit();
     }
 }

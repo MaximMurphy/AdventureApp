@@ -8,8 +8,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.adventureapp.R;
+import com.example.adventureapp.model.Adventure;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,8 +23,9 @@ import com.example.adventureapp.R;
  */
 public class PastAdventureFragment extends Fragment {
     private static String TAG = "PastAdventureFragment";
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private TextView adventureName;
+    private Button editButton, deleteButton;
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -36,15 +42,13 @@ public class PastAdventureFragment extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment PastAdventureFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static PastAdventureFragment newInstance(String param1, String param2) {
+    public static PastAdventureFragment newInstance(String param1) {
         PastAdventureFragment fragment = new PastAdventureFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -53,9 +57,12 @@ public class PastAdventureFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, TAG + " onCreate");
         super.onCreate(savedInstanceState);
+        adventureName = getView().findViewById(R.id.adventureNameTextView);
+        editButton = getView().findViewById(R.id.editButton);
+        deleteButton = getView().findViewById(R.id.deleteButton);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            adventureName.setText(mParam1);
         }
     }
 
@@ -64,6 +71,9 @@ public class PastAdventureFragment extends Fragment {
                              Bundle savedInstanceState) {
         Log.d(TAG, TAG + " on create view");
         super.onCreateView(inflater, container, savedInstanceState);
+
+        View v = inflater.inflate(R.layout.fragment_past_adventure, container, false);
+
         if (container != null) {
             container.removeAllViews();
         }

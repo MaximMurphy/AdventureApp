@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.adventureapp.model.Adventure;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -34,20 +35,38 @@ public class DAOAdventure {
     public ArrayList<Adventure> getAllAdventures(){
         ArrayList<Adventure> list = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
-        Query query = dbReference.child("Adventure").orderByChild("user").equalTo(mAuth.getCurrentUser().getEmail());
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot userSnapshot : snapshot.getChildren()){
-                    list.add(new Adventure(mAuth.getCurrentUser().getEmail(), userSnapshot.getRef().getKey()));
-                }
-            }
+//        Query query = dbReference.child("Adventure").orderByChild("user").equalTo(mAuth.getCurrentUser().getEmail());
+//        query.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for (DataSnapshot userSnapshot : snapshot.getChildren()){
+//                    list.add(new Adventure(mAuth.getCurrentUser().getEmail(), userSnapshot.getRef().getKey()));
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Log.e(TAG, "onCancelled", error.toException());
+//            }
+//        });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e(TAG, "onCancelled", error.toException());
-            }
-        });
+//        dbReference.child("Adventure").orderByChild("user").equalTo(mAuth.getCurrentUser().getEmail()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DataSnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    task.getResult().getValue();
+////                    for (DataSnapshot userSnapshot : snapshot.getChildren()){
+////                        list.add(new Adventure(mAuth.getCurrentUser().getEmail(), userSnapshot.getRef().getKey()));
+////                    }
+////                }
+////                else {
+////                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
+////                }
+//            }
+//        });
+
+
+
         return list;
     }
 }
