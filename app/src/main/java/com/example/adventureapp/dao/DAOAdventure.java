@@ -35,12 +35,14 @@ public class DAOAdventure {
     public ArrayList<Adventure> getAllAdventures(){
         ArrayList<Adventure> list = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
-//        Query query = dbReference.child("Adventure").orderByChild("user").equalTo(mAuth.getCurrentUser().getEmail());
-//        query.addValueEventListener(new ValueEventListener() {
+
+//        dbReference.child("Adventure").orderByChild("user").equalTo(mAuth.getCurrentUser().getEmail()).addValueEventListener(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for (DataSnapshot userSnapshot : snapshot.getChildren()){
-//                    list.add(new Adventure(mAuth.getCurrentUser().getEmail(), userSnapshot.getRef().getKey()));
+//                if(snapshot.exists()){
+//                    for (DataSnapshot userSnapshot : snapshot.getChildren()){
+//                        list.add(new Adventure(mAuth.getCurrentUser().getEmail(), userSnapshot.getRef().getKey()));
+//                    }
 //                }
 //            }
 //
@@ -50,21 +52,17 @@ public class DAOAdventure {
 //            }
 //        });
 
-//        dbReference.child("Adventure").orderByChild("user").equalTo(mAuth.getCurrentUser().getEmail()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DataSnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    task.getResult().getValue();
-////                    for (DataSnapshot userSnapshot : snapshot.getChildren()){
-////                        list.add(new Adventure(mAuth.getCurrentUser().getEmail(), userSnapshot.getRef().getKey()));
-////                    }
-////                }
-////                else {
-////                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
-////                }
-//            }
-//        });
-
+        dbReference.child("users").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                }
+                else {
+                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                }
+            }
+        });
 
 
         return list;

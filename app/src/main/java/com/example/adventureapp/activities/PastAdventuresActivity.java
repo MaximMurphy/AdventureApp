@@ -31,11 +31,12 @@ public class PastAdventuresActivity extends AppCompatActivity {
 
         for (Adventure adventure : list){
             Log.d(TAG, "Adventure processed");
-            PastAdventureFragment frag = new PastAdventureFragment().newInstance(adventure.getUser());
+            PastAdventureFragment frag = new PastAdventureFragment().newInstance(adventure.getAdventureName());
 
-            fragmentTransaction.add(R.id.pastAdventureFragmentContainer, frag, adventure.getUser());
+            fragmentTransaction.add(R.id.pastAdventureFragmentContainer, frag, adventure.getAdventureName());
         }
-
+//        PastAdventureFragment frag = new PastAdventureFragment().newInstance("nolan");
+//        fragmentTransaction.add(R.id.pastAdventureFragmentContainer, frag, "nolan");
         fragmentTransaction.commit();
     }
 }
