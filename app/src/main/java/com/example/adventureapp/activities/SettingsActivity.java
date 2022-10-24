@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Button;
 
 import com.example.adventureapp.R;
+import com.example.adventureapp.dao.DAOAdventure;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,28 +21,16 @@ public class SettingsActivity extends AppCompatActivity {
     private Button deleteAdventuresButton;
     private static String TAG = "SettingsActivity";
     FirebaseAuth mAuth;
-    DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+    DAOAdventure dao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         deleteAdventuresButton = findViewById(R.id.deleteAdventuresButton);
         mAuth = FirebaseAuth.getInstance();
+        dao = new DAOAdventure();
         deleteAdventuresButton.setOnClickListener(v -> {
-            Query query = ref.child("Adventure").orderByChild("user").equalTo(mAuth.getCurrentUser().getEmail());
-            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot userSnapshot : snapshot.getChildren()){
-                        userSnapshot.getRef().removeValue();
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Log.e(TAG, "onCancelled", error.toException());
-                }
-            });
+            dao.deleteAll();
         });
     }
 }

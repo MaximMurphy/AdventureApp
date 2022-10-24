@@ -35,21 +35,32 @@ public class DAOAdventure {
         return dbReference.push().setValue(adv);
     }
 
-
-    //TODO: MAKE THIS NOT DELETE ALL ENTRIES WITH THE SAME NAME
-    //Maybe add a unique identifier to the adventure object?
-    public void delete(String adventureName){
+    public void deleteAll(){
         dbReference.orderByChild("user").equalTo(mAuth.getCurrentUser().getEmail()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot adventure : snapshot.getChildren()) {
-                    HashMap<String, String> map = (HashMap<String, String>) adventure.getValue();
+                for (DataSnapshot userSnapshot : snapshot.getChildren()){
+                    userSnapshot.getRef().removeValue();
+                }
+            }
 
-                    for(Map.Entry<String, String> entry : map.entrySet()){
-                        if(entry.getKey().equals("adventureName") && entry.getValue().equals(adventureName)){
-                            adventure.getRef().removeValue();
-                        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e(TAG, "onCancelled", error.toException());
+            }
+        });
+    }
+
+    public void delete(int position){
+        dbReference.orderByChild("user").equalTo(mAuth.getCurrentUser().getEmail()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int counter = 0;
+                for (DataSnapshot adventure : snapshot.getChildren()) {
+                    if(counter == position){
+                        adventure.getRef().removeValue();
                     }
+                    counter++;
                 }
             }
 
@@ -87,6 +98,26 @@ public class DAOAdventure {
 
             }
         });
+    }
 
+    public void updateAdventure(String newName, int position){
+        dbReference.orderByChild("user").equalTo(mAuth.getCurrentUser().getEmail()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int counter = 0;
+                for (DataSnapshot adventure : snapshot.getChildren()) {
+                    if(counter == position){
+                        Log.d(TAG, "set value");
+                        adventure.getRef().setValue(new Adventure(mAuth.getCurrentUser().getEmail(), newName));
+                    }
+                    counter++;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e(TAG, "onCancelled", error.toException());
+            }
+        });
     }
 }

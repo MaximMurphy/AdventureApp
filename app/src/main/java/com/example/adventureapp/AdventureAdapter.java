@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -59,7 +61,9 @@ public class AdventureAdapter extends RecyclerView.Adapter<AdventureAdapter.Adve
 
     public class AdventureViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView adventureName;
-        Button editButton, deleteButton;
+        Button editButton, deleteButton, saveEditButton;
+        EditText newNameEditText;
+        LinearLayout editAdventureContainer;
         DAOAdventure dao;
         public AdventureViewHolder(@NonNull View itemView){
             super(itemView);
@@ -67,28 +71,45 @@ public class AdventureAdapter extends RecyclerView.Adapter<AdventureAdapter.Adve
             adventureName = itemView.findViewById(R.id.adventureNameTextView);
             editButton = itemView.findViewById(R.id.editButton);
             deleteButton = itemView.findViewById(R.id.deleteButton);
+            saveEditButton = itemView.findViewById(R.id.saveEditButton);
+            newNameEditText = itemView.findViewById(R.id.newNameEditText);
+            editAdventureContainer = itemView.findViewById(R.id.editAdventureContainer);
             dao = new DAOAdventure();
 
             editButton.setOnClickListener(this);
             deleteButton.setOnClickListener(this);
+            saveEditButton.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            //Log.d("View: ", v.toString());
-            //Toast.makeText(v.getContext(), mTextViewTitle.getText() + " position = " + getPosition(), Toast.LENGTH_SHORT).show();
-            if(v.equals(deleteButton)){
-                removeAt(getAdapterPosition());
+            switch (v.getId()){
+                case R.id.editButton:
+                    editAdventureContainer.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.deleteButton:
+                    removeAt(getAdapterPosition());
+                    break;
+                case R.id.saveEditButton:
+                    saveEdit(getAdapterPosition());
+                    break;
             }
         }
 
         public void removeAt(int position) {
-
-            Adventure removed = adventures.remove(position);
-            dao.delete(removed.getAdventureName());
+            adventures.remove(position);
+            dao.delete(position);
             setAdventuresList(adventures);
-//            notifyItemRemoved(position);
+            editAdventureContainer.setVisibility(View.GONE);
             notifyItemRangeChanged(position, adventures.size());
+        }
+
+        public void saveEdit(int position){
+            editAdventureContainer.setVisibility(View.GONE);
+            dao.updateAdventure(newNameEditText.getText().toString(), position);
+            ArrayList<Adventure> newList = adventures;
+            newList.get(position).setAdventureName(newNameEditText.getText().toString());
+            setAdventuresList(newList);
         }
     }
 
@@ -96,7 +117,5 @@ public class AdventureAdapter extends RecyclerView.Adapter<AdventureAdapter.Adve
         this.adventures = adventures;
         notifyDataSetChanged();
     }
-
-
 
 }

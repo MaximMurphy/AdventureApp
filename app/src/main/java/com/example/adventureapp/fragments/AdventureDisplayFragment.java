@@ -1,5 +1,6 @@
 package com.example.adventureapp.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.adventureapp.activities.HomePageActivity;
 import com.example.adventureapp.model.Adventure;
 import com.example.adventureapp.dao.DAOAdventure;
 import com.example.adventureapp.R;
@@ -20,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 
 public class AdventureDisplayFragment extends Fragment implements View.OnClickListener{
-    private static final String TAG = "AdventureDisplayFragment";
+    private static final String TAG = "AdventureDisplayFrag";
     private Button task1Button, task2Button, task3Button, finishButton;
     private EditText adventureNameET;
     private DAOAdventure dao;
@@ -82,6 +84,8 @@ public class AdventureDisplayFragment extends Fragment implements View.OnClickLi
                         Log.e(TAG, TAG + " failure on db interaction");
                     });
                 }
+                Intent intent = new Intent(getContext(), HomePageActivity.class);
+                startActivity(intent);
         }
     }
 }
