@@ -15,6 +15,7 @@
         <entry key="app/src/main/res/drawable/person_outline.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/text_box_border.xml" value="0.228" />
         <entry key="app/src/main/res/layout/activity_adventure.xml" value="0.22395833333333334" />
+        <entry key="app/src/main/res/layout/activity_edit_adventure.xml" value="0.15208333333333332" />
         <entry key="app/src/main/res/layout/activity_home_page.xml" value="0.13541666666666666" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />

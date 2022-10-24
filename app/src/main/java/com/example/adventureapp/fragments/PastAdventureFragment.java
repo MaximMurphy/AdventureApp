@@ -1,5 +1,6 @@
 package com.example.adventureapp.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.adventureapp.R;
+import com.example.adventureapp.activities.AdventureActivity;
+import com.example.adventureapp.activities.EditAdventureActivity;
 import com.example.adventureapp.model.Adventure;
 
 import java.util.ArrayList;
@@ -88,6 +91,9 @@ public class PastAdventureFragment extends Fragment implements View.OnClickListe
         switch (v.getId()) {
             case R.id.editButton:
                 Log.d(TAG, TAG + " edit onclick");
+                Intent intent = new Intent(getContext(), EditAdventureActivity.class);
+                startActivity(intent);
+
                 break;
             case R.id.deleteButton:
                 Log.d(TAG, TAG + " delete onclick");

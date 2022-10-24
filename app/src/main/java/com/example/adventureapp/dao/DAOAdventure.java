@@ -28,7 +28,6 @@ public class DAOAdventure {
     public DAOAdventure(){
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         dbReference = db.getReference(Adventure.class.getSimpleName());
-        adventureArrayList = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
     }
 
@@ -36,8 +35,33 @@ public class DAOAdventure {
         return dbReference.push().setValue(adv);
     }
 
-    public void getAllAdventures(AdventureAdapter adapter){
 
+    //TODO: MAKE THIS NOT DELETE ALL ENTRIES WITH THE SAME NAME
+    //Maybe add a unique identifier to the adventure object?
+    public void delete(String adventureName){
+        dbReference.orderByChild("user").equalTo(mAuth.getCurrentUser().getEmail()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot adventure : snapshot.getChildren()) {
+                    HashMap<String, String> map = (HashMap<String, String>) adventure.getValue();
+
+                    for(Map.Entry<String, String> entry : map.entrySet()){
+                        if(entry.getKey().equals("adventureName") && entry.getValue().equals(adventureName)){
+                            adventure.getRef().removeValue();
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e(TAG, "onCancelled", error.toException());
+            }
+        });
+    }
+
+    public void getAllAdventures(AdventureAdapter adapter){
+        adventureArrayList = new ArrayList<>();
         dbReference.orderByChild("user").equalTo(mAuth.getCurrentUser().getEmail()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

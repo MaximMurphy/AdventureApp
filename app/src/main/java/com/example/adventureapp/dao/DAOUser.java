@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.adventureapp.model.Adventure;
+import com.example.adventureapp.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,14 +28,14 @@ public class DAOUser {
 
     public DAOUser(){
         FirebaseDatabase db = FirebaseDatabase.getInstance();
-        dbReference = db.getReference(Adventure.class.getSimpleName());
+        dbReference = db.getReference(User.class.getSimpleName());
     }
 
-    public Task<Void> add(Adventure adv){
-        return dbReference.push().setValue(adv);
+    public Task<Void> add(User user){
+        return dbReference.push().setValue(user);
     }
 
-    public ArrayList<Adventure> getAllAdventures(){
+    public ArrayList<Adventure> getAllUsers(){
         ArrayList<Adventure> adventureArrayList = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
 
