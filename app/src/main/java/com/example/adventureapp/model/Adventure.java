@@ -2,8 +2,7 @@ package com.example.adventureapp.model;
 
 public class Adventure {
 
-    private String user;
-    private String adventureName;
+    private String user, adventureName;
     public Adventure(){}
 
     public Adventure(String user, String adventureName) {

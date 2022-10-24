@@ -70,10 +70,6 @@ public class PastAdventureFragment extends Fragment implements View.OnClickListe
 
         View v = inflater.inflate(R.layout.fragment_past_adventure, container, false);
 
-        if (container != null) {
-            container.removeAllViews();
-        }
-
         adventureName = v.findViewById(R.id.adventureNameTextView);
         editButton = v.findViewById(R.id.editButton);
         deleteButton = v.findViewById(R.id.deleteButton);
