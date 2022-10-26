@@ -19,14 +19,14 @@
             android:id="@+id/adventureNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="80dp"
+            android:layout_marginRight="30dp"
             android:text="TextView" />
 
         <Button
             android:id="@+id/editButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="10dp"
             android:text="Edit" />
 
         <Button
@@ -58,10 +58,10 @@
 
         <Button
             android:id="@+id/saveEditButton"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="48dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:backgroundTint="#77AA55"
             android:text="Save" />
     </LinearLayout>

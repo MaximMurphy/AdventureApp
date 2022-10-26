@@ -65,6 +65,9 @@ public class AdventureDisplayFragment extends Fragment implements View.OnClickLi
         //do what you want to do when button is clicked
         switch (v.getId()) {
             case R.id.task1Button:
+                //check if photo already stored
+                //if not, bring up camera and have user take photo
+                //if already photo, display photo
                 break;
             case R.id.task2Button:
                 break;
