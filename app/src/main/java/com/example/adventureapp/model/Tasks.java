@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class Tasks {
 
-    private List<String> tasks = Arrays.asList("Find mushrooms", "Find a river", "Find a big rock",
+    public List<String> tasks = Arrays.asList("Find mushrooms", "Find a river", "Find a big rock",
             "Find an animal", "Find a windy trail", "Find a tall tree", "Find a bench", "Find a Y-Stick",
             "Find a bird", "Find a trail-marker");
 
@@ -21,7 +21,7 @@ public class Tasks {
         return tasks;
     }
 
-    public List<String> getThreeRandomTasks(List<String> tasks){
+    public List<String> getThreeRandomTasks(){
         List<String> adventureTasks = new ArrayList<>();
 
         for(int i = 0; i < 3; i++){

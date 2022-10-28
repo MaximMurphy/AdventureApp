@@ -78,16 +78,23 @@ public class DAOAdventure {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot s : snapshot.getChildren()) {
                     Log.d(TAG, s.toString());
-                    String user = null, adventureName = null;
+                    String user = null, adventureName = null, taskOne = null, taskTwo = null, taskThree = null;
                     for (Map.Entry<String, String> entry : ((HashMap<String, String>) s.getValue()).entrySet()) {
                         if (entry.getKey().equals("adventureName")) {
                             adventureName = entry.getValue();
                         } else if (entry.getKey().equals("user")) {
                             user = entry.getValue();
+                        }else if (entry.getKey().equals("taskOne")) {
+                            taskOne = entry.getValue();
+                        }else if (entry.getKey().equals("taskTwo")) {
+                            taskTwo = entry.getValue();
+                        }else if (entry.getKey().equals("taskThree")) {
+                            taskThree = entry.getValue();
                         }
+
                     }
                     Log.d(TAG, user + " " + adventureName);
-                    adventureArrayList.add(new Adventure(user, adventureName));
+                    adventureArrayList.add(new Adventure(user, adventureName, taskOne, taskTwo, taskThree));
                     Log.d(TAG, adventureArrayList.toString());
                 }
                 adapter.setAdventuresList(adventureArrayList);
@@ -108,7 +115,10 @@ public class DAOAdventure {
                 for (DataSnapshot adventure : snapshot.getChildren()) {
                     if(counter == position){
                         Log.d(TAG, "set value");
-                        adventure.getRef().setValue(new Adventure(mAuth.getCurrentUser().getEmail(), newName));
+                        adventure.getRef().setValue(new Adventure(mAuth.getCurrentUser().getEmail(), newName,
+                                adventure.child("tasks").child("0").getValue(String.class),
+                                adventure.child("tasks").child("1").getValue(String.class),
+                                adventure.child("tasks").child("2").getValue(String.class)));
                     }
                     counter++;
                 }
