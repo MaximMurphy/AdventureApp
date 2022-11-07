@@ -50,6 +50,11 @@ public class AdventureAdapter extends RecyclerView.Adapter<AdventureAdapter.Adve
         Adventure adventure = adventures.get(position);
         holder.adventureName.setText(adventure.getAdventureName());
 
+        //holder.taskOne.setText(adventure.getTasks().get(0));
+        //holder.taskTwo.setText(adventure.getTasks().get(1));
+        //holder.taskThree.setText(adventure.getTasks().get(2));
+
+
 //        holder.editButton.setOnClickListener(v -> editListener.onItemClicked(adventure));
 //        holder.deleteButton.setOnClickListener(v -> deleteListener.onItemClicked(adventure));
     }
@@ -60,23 +65,29 @@ public class AdventureAdapter extends RecyclerView.Adapter<AdventureAdapter.Adve
     }
 
     public class AdventureViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView adventureName;
-        Button editButton, deleteButton, saveEditButton;
+        TextView adventureName, taskOne, taskTwo, taskThree;
+        Button editButton, viewButton, deleteButton, saveEditButton;
         EditText newNameEditText;
-        LinearLayout editAdventureContainer;
+        //LinearLayout editAdventureContainer, viewTasksContainer;
         DAOAdventure dao;
         public AdventureViewHolder(@NonNull View itemView){
             super(itemView);
 
             adventureName = itemView.findViewById(R.id.adventureNameTextView);
             editButton = itemView.findViewById(R.id.editButton);
+            viewButton = itemView.findViewById(R.id.viewButton);
             deleteButton = itemView.findViewById(R.id.deleteButton);
             saveEditButton = itemView.findViewById(R.id.saveEditButton);
             newNameEditText = itemView.findViewById(R.id.newNameEditText);
-            editAdventureContainer = itemView.findViewById(R.id.editAdventureContainer);
+            taskOne = itemView.findViewById(R.id.taskOneTextView);
+            taskTwo = itemView.findViewById(R.id.taskTwoTextView);
+            taskThree = itemView.findViewById(R.id.taskThreeTextView);
+            //editAdventureContainer = itemView.findViewById(R.id.editAdventureContainer);
+            //viewTasksContainer = itemView.findViewById(R.id.viewTasksContainer);
             dao = new DAOAdventure();
 
             editButton.setOnClickListener(this);
+            viewButton.setOnClickListener(this);
             deleteButton.setOnClickListener(this);
             saveEditButton.setOnClickListener(this);
         }
@@ -85,7 +96,25 @@ public class AdventureAdapter extends RecyclerView.Adapter<AdventureAdapter.Adve
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.editButton:
-                    editAdventureContainer.setVisibility(View.VISIBLE);
+                    //viewTasksContainer.setVisibility(View.GONE);
+                    taskOne.setVisibility(View.GONE);
+                    taskTwo.setVisibility(View.GONE);
+                    taskThree.setVisibility(View.GONE);
+
+                    //editAdventureContainer.setVisibility(View.VISIBLE);
+                    newNameEditText.setVisibility(View.VISIBLE);
+                    saveEditButton.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.viewButton:
+                    //editAdventureContainer.setVisibility(View.GONE);
+                    newNameEditText.setVisibility(View.GONE);
+                    saveEditButton.setVisibility(View.GONE);
+
+                    //viewTasksContainer.setVisibility(View.VISIBLE);
+                    taskOne.setVisibility(View.VISIBLE);
+                    taskTwo.setVisibility(View.VISIBLE);
+                    taskThree.setVisibility(View.VISIBLE);
+
                     break;
                 case R.id.deleteButton:
                     removeAt(getAdapterPosition());
@@ -100,12 +129,19 @@ public class AdventureAdapter extends RecyclerView.Adapter<AdventureAdapter.Adve
             adventures.remove(position);
             dao.delete(position);
             setAdventuresList(adventures);
-            editAdventureContainer.setVisibility(View.GONE);
+            //editAdventureContainer.setVisibility(View.GONE);
+            newNameEditText.setVisibility(View.GONE);
+            saveEditButton.setVisibility(View.GONE);
+            taskOne.setVisibility(View.GONE);
+            taskTwo.setVisibility(View.GONE);
+            taskThree.setVisibility(View.GONE);
             notifyItemRangeChanged(position, adventures.size());
         }
 
         public void saveEdit(int position){
-            editAdventureContainer.setVisibility(View.GONE);
+            //editAdventureContainer.setVisibility(View.GONE);
+            newNameEditText.setVisibility(View.GONE);
+            saveEditButton.setVisibility(View.GONE);
             dao.updateAdventure(newNameEditText.getText().toString(), position);
             ArrayList<Adventure> newList = adventures;
             newList.get(position).setAdventureName(newNameEditText.getText().toString());

@@ -1,68 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:background="#FFFFFF"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:background="@null"
+    tools:context=".fragments.AdventureDisplayFragment">
 
-    <LinearLayout
-        android:id="@+id/tableRow"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-1dp">
-
-        <TextView
-            android:id="@+id/adventureNameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="30dp"
-            android:text="TextView" />
+        android:layout_height="212dp"
+        tools:context=".activities.HomePageActivity">
 
         <Button
             android:id="@+id/editButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:text="Edit" />
+            android:layout_marginStart="15dp"
+            android:text="Edit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/viewButton"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/adventureNameTextView"
+            app:layout_constraintVertical_bias="0.059" />
+
+        <Button
+            android:id="@+id/viewButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/adventureNameTextView"
+            app:layout_constraintVertical_bias="0.059" />
+
+        <TextView
+            android:id="@+id/adventureNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.018" />
 
         <Button
             android:id="@+id/deleteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#808080"
-            android:text="Delete" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/editAdventureContainer"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-1dp"
-        android:orientation="horizontal"
-        android:visibility="gone">
+            android:layout_marginEnd="15dp"
+            android:text="Delete"
+            app:backgroundTint="#808080"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/viewButton"
+            app:layout_constraintTop_toBottomOf="@+id/adventureNameTextView"
+            app:layout_constraintVertical_bias="0.059" />
 
         <EditText
             android:id="@+id/newNameEditText"
-            android:layout_width="32dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="204dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="16dp"
             android:ems="10"
-            android:hint="New Name"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:text="New Name"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.144"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editButton"
+            app:layout_constraintVertical_bias="0.157" />
 
         <Button
             android:id="@+id/saveEditButton"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:backgroundTint="#77AA55"
-            android:text="Save" />
-    </LinearLayout>
-</LinearLayout>
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:visibility="gone"
+            app:backgroundTint="#2C9803"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.432"
+            app:layout_constraintStart_toEndOf="@+id/newNameEditText"
+            app:layout_constraintTop_toBottomOf="@+id/deleteButton" />
+
+        <TextView
+            android:id="@+id/taskOneTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Task 1"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/taskTwoTextView"
+            app:layout_constraintHorizontal_bias="0.341"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editButton"
+            app:layout_constraintVertical_bias="0.035" />
+
+        <TextView
+            android:id="@+id/taskTwoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Task 2"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.435"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewButton"
+            app:layout_constraintVertical_bias="0.032" />
+
+        <TextView
+            android:id="@+id/taskThreeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Task 3"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.476"
+            app:layout_constraintStart_toEndOf="@+id/taskTwoTextView"
+            app:layout_constraintTop_toBottomOf="@+id/deleteButton"
+            app:layout_constraintVertical_bias="0.032" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
