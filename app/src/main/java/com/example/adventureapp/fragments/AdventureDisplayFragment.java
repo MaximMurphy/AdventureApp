@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.adventureapp.activities.HomePageActivity;
+import com.example.adventureapp.activities.TaskPhotoActivity;
 import com.example.adventureapp.model.Adventure;
 import com.example.adventureapp.dao.DAOAdventure;
 import com.example.adventureapp.R;
@@ -56,9 +57,18 @@ public class AdventureDisplayFragment extends Fragment implements View.OnClickLi
 
         dao = new DAOAdventure();
 
-        task1Button.setOnClickListener(this);
-        task2Button.setOnClickListener(this);
-        task3Button.setOnClickListener(this);
+        task1Button.setOnClickListener(u -> {
+            Log.i(TAG, TAG + " - taskPhotoButton onCreate");
+            openTaskPhoto(task1Button.getText().toString());
+        });
+        task2Button.setOnClickListener(u -> {
+            Log.i(TAG, TAG + " - taskPhotoButton onCreate");
+            openTaskPhoto(task2Button.getText().toString());
+        });
+        task3Button.setOnClickListener(u -> {
+            Log.i(TAG, TAG + " - taskPhotoButton onCreate");
+            openTaskPhoto(task3Button.getText().toString());
+        });
         finishButton.setOnClickListener(this);
         // Inflate the layout for this fragment
         return v;
@@ -70,19 +80,16 @@ public class AdventureDisplayFragment extends Fragment implements View.OnClickLi
         super.onDestroyView();
     }
 
+    public void openTaskPhoto(String taskName){
+        Intent intent = new Intent(getContext(), TaskPhotoActivity.class);
+        intent.putExtra("TASK_NAME", taskName);
+        startActivity(intent);
+    }
+
     @Override
     public void onClick(View v) {
         //do what you want to do when button is clicked
         switch (v.getId()) {
-            case R.id.task1Button:
-                //check if photo already stored
-                //if not, bring up camera and have user take photo
-                //if already photo, display photo
-                break;
-            case R.id.task2Button:
-                break;
-            case R.id.task3Button:
-                break;
             case R.id.finishButton:
                 Log.d(TAG, TAG + " finish onclick");
 
