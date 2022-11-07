@@ -116,9 +116,12 @@ public class DAOAdventure {
                     if(counter == position){
                         Log.d(TAG, "set value");
                         adventure.getRef().setValue(new Adventure(mAuth.getCurrentUser().getEmail(), newName,
-                                adventure.child("tasks").child("0").getValue(String.class),
-                                adventure.child("tasks").child("1").getValue(String.class),
-                                adventure.child("tasks").child("2").getValue(String.class)));
+                                //adventure.child("tasks").child("0").getValue(String.class),
+                                //adventure.child("tasks").child("1").getValue(String.class),
+                                //adventure.child("tasks").child("2").getValue(String.class)));
+                                adventure.child("taskOne").getValue(String.class),
+                                adventure.child("taskTwo").getValue(String.class),
+                                adventure.child("taskThree").getValue(String.class)));
                     }
                     counter++;
                 }

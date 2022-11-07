@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="212dp"
+        android:layout_height="205dp"
         tools:context=".activities.HomePageActivity">
 
         <Button
@@ -41,7 +41,10 @@
             android:id="@+id/adventureNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:text="TextView"
+            android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -99,11 +102,11 @@
             android:text="Task 1"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/taskTwoTextView"
-            app:layout_constraintHorizontal_bias="0.341"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.094"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editButton"
-            app:layout_constraintVertical_bias="0.035" />
+            app:layout_constraintVertical_bias="0.258" />
 
         <TextView
             android:id="@+id/taskTwoTextView"
@@ -113,23 +116,24 @@
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.435"
+            app:layout_constraintHorizontal_bias="0.094"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewButton"
-            app:layout_constraintVertical_bias="0.032" />
+            app:layout_constraintTop_toBottomOf="@+id/taskOneTextView"
+            app:layout_constraintVertical_bias="0.138" />
 
         <TextView
             android:id="@+id/taskThreeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:text="Task 3"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.476"
-            app:layout_constraintStart_toEndOf="@+id/taskTwoTextView"
-            app:layout_constraintTop_toBottomOf="@+id/deleteButton"
-            app:layout_constraintVertical_bias="0.032" />
+            app:layout_constraintHorizontal_bias="0.094"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskTwoTextView"
+            app:layout_constraintVertical_bias="0.279" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -49,6 +49,7 @@ public class PastAdventuresActivity extends AppCompatActivity {
         adapter = new AdventureAdapter(this, adventureArrayList);
 
         recyclerView.setAdapter(adapter);
+        recyclerView.setNestedScrollingEnabled(false);
 
         dao.getAllAdventures(adapter);
     }

@@ -50,13 +50,13 @@ public class AdventureAdapter extends RecyclerView.Adapter<AdventureAdapter.Adve
         Adventure adventure = adventures.get(position);
         holder.adventureName.setText(adventure.getAdventureName());
 
-        //holder.taskOne.setText(adventure.getTasks().get(0));
-        //holder.taskTwo.setText(adventure.getTasks().get(1));
-        //holder.taskThree.setText(adventure.getTasks().get(2));
+        holder.taskOne.setText("Task 1: " + adventure.getTaskOne());
+        holder.taskTwo.setText("Task 2: " + adventure.getTaskTwo());
+        holder.taskThree.setText("Task 3: " + adventure.getTaskThree());
 
 
-//        holder.editButton.setOnClickListener(v -> editListener.onItemClicked(adventure));
-//        holder.deleteButton.setOnClickListener(v -> deleteListener.onItemClicked(adventure));
+        //holder.editButton.setOnClickListener(v -> editListener.onItemClicked(adventure));
+        //holder.deleteButton.setOnClickListener(v -> deleteListener.onItemClicked(adventure));
     }
 
     @Override

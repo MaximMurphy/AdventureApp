@@ -20,17 +20,29 @@ public class Adventure {
         return user;
     }
 
-    public List<String> getTasks(){ return Arrays.asList(taskOne, taskTwo, taskThree); }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
+    public String getTaskOne(){ return taskOne; }
+    public String getTaskTwo(){ return taskTwo; }
+    public String getTaskThree(){ return taskThree; }
 
     public String getAdventureName() {
         return adventureName;
     }
 
+    public void setUser(String user) {
+        this.user = user;
+    }
+
     public void setAdventureName(String adventureName) {
         this.adventureName = adventureName;
+    }
+
+    public void setTaskOne(String taskOne) {
+        this.taskOne = taskOne;
+    }
+    public void setTaskTwo(String taskTwo) {
+        this.taskTwo = taskTwo;
+    }
+    public void setTaskThree(String taskThree) {
+        this.taskThree = taskThree;
     }
 }
