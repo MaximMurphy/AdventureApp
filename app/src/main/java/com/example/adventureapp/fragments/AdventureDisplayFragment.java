@@ -23,6 +23,7 @@ import com.example.adventureapp.model.Tasks;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
+import java.util.UUID;
 
 
 public class AdventureDisplayFragment extends Fragment implements View.OnClickListener{
@@ -33,6 +34,7 @@ public class AdventureDisplayFragment extends Fragment implements View.OnClickLi
     private EditText adventureNameET;
     private DAOAdventure dao;
     private FirebaseAuth mAuth;
+    private String id;
     public AdventureDisplayFragment() {
         // Required empty public constructor
     }
@@ -56,6 +58,8 @@ public class AdventureDisplayFragment extends Fragment implements View.OnClickLi
         mAuth = FirebaseAuth.getInstance();
 
         dao = new DAOAdventure();
+
+        id  = UUID.randomUUID().toString();
 
         task1Button.setOnClickListener(u -> {
             Log.i(TAG, TAG + " - taskPhotoButton onCreate");
@@ -83,6 +87,7 @@ public class AdventureDisplayFragment extends Fragment implements View.OnClickLi
     public void openTaskPhoto(String taskName){
         Intent intent = new Intent(getContext(), TaskPhotoActivity.class);
         intent.putExtra("TASK_NAME", taskName);
+        intent.putExtra("ADVENTURE_ID", id);
         startActivity(intent);
     }
 
@@ -102,14 +107,14 @@ public class AdventureDisplayFragment extends Fragment implements View.OnClickLi
                 if(adventureName == null || TextUtils.isEmpty(adventureName)){
                     Toast.makeText(getActivity(), "Please enter adventure name", Toast.LENGTH_SHORT).show();
                 } else {
-                    dao.add(a).addOnSuccessListener(suc -> {
+                    dao.add(id, a).addOnSuccessListener(suc -> {
                         Log.d(TAG, TAG + " finish db interaction");
                     }).addOnFailureListener(err -> {
                         Log.e(TAG, TAG + " failure on db interaction");
                     });
+                    Intent intent = new Intent(getContext(), HomePageActivity.class);
+                    startActivity(intent);
                 }
-                Intent intent = new Intent(getContext(), HomePageActivity.class);
-                startActivity(intent);
         }
     }
 }

@@ -31,8 +31,8 @@ public class DAOAdventure {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    public Task<Void> add(Adventure adv){
-        return dbReference.push().setValue(adv);
+    public Task<Void> add(String id, Adventure adv){
+        return dbReference.child(id).setValue(adv);
     }
 
     public void deleteAll(){

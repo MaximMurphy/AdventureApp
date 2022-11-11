@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
+import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
@@ -23,6 +24,9 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -34,19 +38,33 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.adventureapp.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.nio.ByteBuffer;
 import java.util.Date;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 
 public class TaskPhotoActivity extends AppCompatActivity {
     private Button takePhotoButton;
+    private String taskName;
     private TextView task;
     private PreviewView previewView;
     private ImageCapture imageCapture;
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
+
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
+
+    private String id;
 
     private static final int CAMERA_PERMISSION_CODE = 100;
 
@@ -55,7 +73,11 @@ public class TaskPhotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_photo);
 
-        String taskName = getIntent().getStringExtra("TASK_NAME");
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+
+        taskName = getIntent().getStringExtra("TASK_NAME");
+        id = getIntent().getStringExtra("ADVENTURE_ID");
 
         task = findViewById(R.id.taskDescription);
         task.setText(taskName);
@@ -64,7 +86,7 @@ public class TaskPhotoActivity extends AppCompatActivity {
 
         takePhotoButton = findViewById(R.id.takePhotoButton);
         takePhotoButton.setOnClickListener(v -> {
-            //takePhoto();
+            takePhoto();
         });
 
         checkPermission(Manifest.permission.CAMERA, CAMERA_PERMISSION_CODE);
@@ -142,36 +164,58 @@ public class TaskPhotoActivity extends AppCompatActivity {
         cameraProvider.bindToLifecycle((LifecycleOwner) this, cameraSelector, preview, imageCapture);
     }
 
-    /*
     private void takePhoto(){
-        File photoDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/CameraXPhotos");
-
-        if(!photoDir.exists())
-            photoDir.mkdir();
-
-        Date date = new Date();
-        String timestamp = String.valueOf(date.getTime());
-        String photoFilePath = photoDir.getAbsolutePath() + "/" + timestamp + ".jpg";
-
-        File photoFile = new File(photoFilePath);
 
         imageCapture.takePicture(
-                new ImageCapture.OutputFileOptions.Builder(photoFile).build(),
                 getExecutor(),
-                new ImageCapture.OnImageSavedCallback() {
+                new ImageCapture.OnImageCapturedCallback() {
                     @Override
-                    public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
-                        Toast.makeText(TaskPhotoActivity.this, "Photo has been saved successfully!", Toast.LENGTH_SHORT).show();
+                    public void onCaptureSuccess(@NonNull ImageProxy image) {
+                        uploadPicture(image);
+                        Toast.makeText(TaskPhotoActivity.this, "Photo has been taken successfully!", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onError(@NonNull ImageCaptureException exception) {
-                        Toast.makeText(TaskPhotoActivity.this, "Error saving photo: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TaskPhotoActivity.this, "Error taking photo: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
         );
-
     }
-    */
+
+    private void uploadPicture(@NonNull ImageProxy image){
+
+        StorageReference imageRef = storageReference.child(id + "/" + taskName);
+
+        Bitmap bitmap = convertImageProxyToBitmap(image);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+
+        UploadTask uploadTask = imageRef.putBytes(data);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+                Toast.makeText(TaskPhotoActivity.this, "Error saving photo: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                Toast.makeText(TaskPhotoActivity.this, "Photo has been saved successfully!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private Bitmap convertImageProxyToBitmap(ImageProxy image) {
+        ByteBuffer byteBuffer = image.getPlanes()[0].getBuffer();
+        byteBuffer.rewind();
+        byte[] bytes = new byte[byteBuffer.capacity()];
+        byteBuffer.get(bytes);
+        byte[] clonedBytes = bytes.clone();
+        return BitmapFactory.decodeByteArray(clonedBytes, 0, clonedBytes.length);
+    }
+
 }
 
