@@ -5,10 +5,11 @@ import java.util.List;
 
 public class Adventure {
 
-    private String user, adventureName, taskOne, taskTwo, taskThree;
+    private String id, user, adventureName, taskOne, taskTwo, taskThree;
     public Adventure(){}
 
-    public Adventure(String user, String adventureName, String taskOne, String taskTwo, String taskThree) {
+    public Adventure(String id, String user, String adventureName, String taskOne, String taskTwo, String taskThree) {
+        this.id = id;
         this.user = user;
         this.adventureName = adventureName;
         this.taskOne = taskOne;
@@ -16,6 +17,9 @@ public class Adventure {
         this.taskThree = taskThree;
     }
 
+    public String getId() {
+        return id;
+    }
     public String getUser() {
         return user;
     }

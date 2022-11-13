@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.TaskPhotoActivity">
-
+    tools:context=".activities.PhotoSelectorActivity">
 
     <TextView
         android:id="@+id/adventureName"
@@ -20,28 +19,40 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.065" />
 
-    <androidx.camera.view.PreviewView
-        android:id="@+id/image"
-        android:layout_width="382dp"
-        android:layout_height="417dp"
+    <Button
+        android:id="@+id/taskOne"
+        android:layout_width="168dp"
+        android:layout_height="71dp"
+        android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/adventureName"
-        app:layout_constraintVertical_bias="0.116" />
+        app:layout_constraintVertical_bias="0.133" />
 
     <Button
-        android:id="@+id/takePhotoButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="100dp"
-        android:text="Take Photo"
+        android:id="@+id/taskTwo"
+        android:layout_width="168dp"
+        android:layout_height="71dp"
+        android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image"
-        app:layout_constraintVertical_bias="0.26" />
+        app:layout_constraintTop_toBottomOf="@+id/taskOne"
+        app:layout_constraintVertical_bias="0.13" />
+
+    <Button
+        android:id="@+id/taskThree"
+        android:layout_width="168dp"
+        android:layout_height="71dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskTwo"
+        app:layout_constraintVertical_bias="0.193" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

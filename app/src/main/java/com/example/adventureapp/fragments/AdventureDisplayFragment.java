@@ -103,7 +103,7 @@ public class AdventureDisplayFragment extends Fragment implements View.OnClickLi
                 String taskTwo = task2Button.getText().toString();
                 String taskThree = task3Button.getText().toString();
 
-                Adventure a = new Adventure(mAuth.getCurrentUser().getEmail(), adventureName, taskOne, taskTwo, taskThree);
+                Adventure a = new Adventure(id, mAuth.getCurrentUser().getEmail(), adventureName, taskOne, taskTwo, taskThree);
                 if(adventureName == null || TextUtils.isEmpty(adventureName)){
                     Toast.makeText(getActivity(), "Please enter adventure name", Toast.LENGTH_SHORT).show();
                 } else {

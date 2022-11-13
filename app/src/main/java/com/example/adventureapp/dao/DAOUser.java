@@ -45,11 +45,13 @@ public class DAOUser {
                 HashMap<String, String> map = new HashMap<>();
                 for(DataSnapshot s : snapshot.getChildren()){
                     Log.d(TAG, s.toString());
-                    String user = null, adventureName = null, taskOne = null, taskTwo = null, taskThree = null;
+                    String id = null, user = null, adventureName = null, taskOne = null, taskTwo = null, taskThree = null;
                     for(Map.Entry<String, String> entry : ((HashMap<String, String>)s.getValue()).entrySet()){
 
                         if(entry.getKey().equals("adventureName")){
                             adventureName = entry.getValue();
+                        } else if(entry.getKey().equals("id")){
+                            id = entry.getValue();
                         } else if(entry.getKey().equals("user")){
                             user = entry.getValue();
                         } else if (entry.getKey().equals("taskOne")) {
@@ -61,7 +63,7 @@ public class DAOUser {
                         }
                     }
                     Log.d(TAG, user + " " + adventureName);
-                    adventureArrayList.add(new Adventure(user, adventureName, taskOne, taskTwo, taskThree));
+                    adventureArrayList.add(new Adventure(id, user, adventureName, taskOne, taskTwo, taskThree));
                 }
             }
 

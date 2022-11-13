@@ -20,6 +20,12 @@
         android:theme="@style/Theme.AdventureApp"
         tools:targetApi="31">
         <activity
+            android:name=".activities.PhotoDisplayActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.PhotoSelectorActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.TaskPhotoActivity"
             android:exported="false" />
         <activity
