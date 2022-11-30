@@ -18,6 +18,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +50,8 @@ public class TaskPhotoActivity extends AppCompatActivity {
     private String id;
 
     private static final int CAMERA_PERMISSION_CODE = 100;
+
+    private String TAG = "TaskPhotoActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,9 +98,6 @@ public class TaskPhotoActivity extends AppCompatActivity {
         // Checking if permission is not granted
         if (ContextCompat.checkSelfPermission(TaskPhotoActivity.this, permission) == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(TaskPhotoActivity.this, new String[] { permission }, requestCode);
-        }
-        else {
-            Toast.makeText(TaskPhotoActivity.this, "Permission already granted", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -147,12 +147,13 @@ public class TaskPhotoActivity extends AppCompatActivity {
     }
 
     private void takePhoto(){
-
+        Log.d(TAG, "take photo");
         imageCapture.takePicture(
                 getExecutor(),
                 new ImageCapture.OnImageCapturedCallback() {
                     @Override
                     public void onCaptureSuccess(@NonNull ImageProxy image) {
+                        Log.d(TAG, "right before upload");
                         uploadPicture(image);
                         Toast.makeText(TaskPhotoActivity.this, "Photo has been taken successfully!", Toast.LENGTH_SHORT).show();
                     }
@@ -166,14 +167,14 @@ public class TaskPhotoActivity extends AppCompatActivity {
     }
 
     private void uploadPicture(@NonNull ImageProxy image){
-
+        Log.d(TAG, "Upload picture begin");
         StorageReference imageRef = storageReference.child(id + "/" + taskName);
 
         Bitmap bitmap = convertImageProxyToBitmap(image);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
-
+        Log.d(TAG, "Picture converted to bytes and compressed");
         UploadTask uploadTask = imageRef.putBytes(data);
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override

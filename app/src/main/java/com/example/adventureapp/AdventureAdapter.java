@@ -32,11 +32,9 @@ public class AdventureAdapter extends RecyclerView.Adapter<AdventureAdapter.Adve
         void onItemClicked(Adventure adventure);
     }
 
-    public AdventureAdapter(Context context, ArrayList<Adventure> list){//, ClickListener editListener, ClickListener deleteListener) {
+    public AdventureAdapter(Context context, ArrayList<Adventure> list){
         this.context = context;
         this.adventures = list;
-//        this.editListener = editListener;
-//        this.deleteListener = deleteListener;
     }
 
     @NonNull

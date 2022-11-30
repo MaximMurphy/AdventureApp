@@ -39,6 +39,13 @@ public class AdventureDisplayFragment extends Fragment implements View.OnClickLi
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        setRetainInstance(true);
+        adventureTasks = new Tasks();
+        randomThreeTasks = adventureTasks.getThreeRandomTasks();
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,8 +53,7 @@ public class AdventureDisplayFragment extends Fragment implements View.OnClickLi
         Log.i(TAG, TAG + " onCreateView");
         View v = inflater.inflate(R.layout.fragment_adventure_display, container, false);
         adventureNameET = v.findViewById(R.id.adventureNameEditText);
-        adventureTasks = new Tasks();
-        randomThreeTasks = adventureTasks.getThreeRandomTasks();
+
         task1Button = v.findViewById(R.id.task1Button);
         task1Button.setText(randomThreeTasks.get(0));
         task2Button = v.findViewById(R.id.task2Button);
@@ -117,4 +123,5 @@ public class AdventureDisplayFragment extends Fragment implements View.OnClickLi
                 }
         }
     }
+
 }
