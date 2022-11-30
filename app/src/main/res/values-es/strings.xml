@@ -1,4 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string name="settings">Ajustes</string>
+    <string name="english">Inglés</string>
+    <string name="spanish">Español</string>
+
+
+    <string name="take_photo">Tomar foto</string>
+    <string name="start_capture">Iniciar captura</string>
+    <string name="stop_capture">Detener captura</string>
+    <string name="photo_retrieved">Foto recuperada</string>
+    <string name="camera_permission_granted">Permiso de cámara concedido</string>
+    <string name="camera_permission_denied">Permiso de cámara denegado</string>
+    <string name="photo_taken_successfully">¡La foto ha sido tomada con éxito!</string>
+    <string name="error_taking_photo">Error al tomar la foto:</string>
+    <string name="error_saving_photo">Error al guardar la foto:</string>
+    <string name="photo_saved_successfully">¡La foto se ha guardado correctamente!</string>
+
+    <string name="adventure">Aventura</string>
+    <string name="past_adventures">Aventuras pasadas</string>
+    <string name="start_adventure">Iniciar Aventura</string>
+    <string name="edit_adventure">Editar aventura</string>
+    <string name="next">Próximo</string>
+    <string name="previous">Previo</string>
+    <string name="finish_button">Finalizar</string>
+    <string name="enter_adventure_name">Introduce el nombre de la aventura</string>
+    <string name="adventure_name">Nombre de la aventura</string>
+    <string name="view">Vista</string>
+    <string name="delete">Borrar</string>
+    <string name="edit">Editar</string>
+
+    <string name="prompt_email">Correo electrónico</string>
+    <string name="prompt_password">La contraseña</string>
+    <string name="prompt_confirm_password">Confirmar contraseña</string>
+    <string name="action_sign_in">Iniciar sesión</string>
+    <string name="action_sign_in_short">Iniciar sesión</string>
+    <string name="sign_out">desconectar</string>
+    <string name="sign_up_prompt">¿No eres un usuario? Inscribirse</string>
+    <string name="sign_up_button">Inscribirse</string>
+    <string name="already_user_prompt">¿Ya eres usuario? Iniciar sesión</string>
+    <string name="welcome">Bienvenido</string>
+    <string name="invalid_username">No es un nombre de usuario válido</string>
+    <string name="invalid_password">La contraseña debe tener >5 caracteres</string>
+    <string name="login_failed">error de inicio de sesion</string>
+    <string name="authentication_failed">Autenticación fallida</string>
+    <string name="error_occured">Se produjo un error</string>
+    <string name="passwords_dont_match">Las contraseñas no coinciden</string>
+    <string name="please_enter_information">Por favor ingrese su información</string>
+
+    <string name="delete_adventures_button">Eliminar aventuras</string>
+    <string name="find_mushrooms">Encontrar setas</string>
+    <string name="find_river">Encontrar un río</string>
+    <string name="find_big_rock">Encuentra una roca grande</string>
+    <string name="find_animal">Encontrar un animal</string>
+    <string name="find_windy_trail">Encuentra un camino ventoso</string>
+    <string name="find_tall_tree">Encuentra un árbol alto</string>
+    <string name="find_bench">Encuentra un banco</string>
+    <string name="find_ystick">Encuentra un palo en Y</string>
+    <string name="find_bird">Encontrar un pájaro</string>
+    <string name="find_trail_marker">Encuentra un marcador de ruta</string>
     
 </resources>

@@ -22,28 +22,28 @@
         app:layout_constraintVertical_bias="0.343" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/english_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="158dp"
         android:layout_marginTop="312dp"
         android:layout_marginEnd="155dp"
         android:layout_marginBottom="371dp"
-        android:text="English"
+        android:text="@string/english"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/spanish_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="158dp"
         android:layout_marginTop="379dp"
         android:layout_marginEnd="154dp"
         android:layout_marginBottom="304dp"
-        android:text="Spanish"
+        android:text="@string/spanish"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

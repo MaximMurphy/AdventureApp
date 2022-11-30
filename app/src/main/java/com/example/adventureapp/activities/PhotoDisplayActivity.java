@@ -40,23 +40,21 @@ public class PhotoDisplayActivity extends AppCompatActivity {
         taskName = findViewById(R.id.adventureName);
         taskName.setText(name);
 
-
         storageReference = FirebaseStorage.getInstance().getReference().child(id + "/" + taskName.getText().toString());
-        //Toast.makeText(PhotoDisplayActivity.this, id + "/" + taskName.getText().toString(), Toast.LENGTH_SHORT).show();
         try {
             final File localFile = File.createTempFile(taskName.getText().toString(), "jpg");
             storageReference.getFile(localFile)
                     .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(PhotoDisplayActivity.this, "Photo Retrieved", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(PhotoDisplayActivity.this, getString(R.string.photo_retrieved), Toast.LENGTH_SHORT).show();
                             Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                             photo.setImageBitmap(bitmap);
                         }
                     }) .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(PhotoDisplayActivity.this, "Error Occurred" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(PhotoDisplayActivity.this, getString(R.string.error_occured) + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
         } catch(IOException e){

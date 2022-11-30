@@ -114,10 +114,10 @@ public class TaskPhotoActivity extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                 // Showing the toast message
-                Toast.makeText(TaskPhotoActivity.this, "Camera Permission Granted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TaskPhotoActivity.this, getString(R.string.camera_permission_granted), Toast.LENGTH_SHORT).show();
             }
             else {
-                Toast.makeText(TaskPhotoActivity.this, "Camera Permission Denied", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TaskPhotoActivity.this, getString(R.string.camera_permission_denied), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -155,12 +155,12 @@ public class TaskPhotoActivity extends AppCompatActivity {
                     public void onCaptureSuccess(@NonNull ImageProxy image) {
                         Log.d(TAG, "right before upload");
                         uploadPicture(image);
-                        Toast.makeText(TaskPhotoActivity.this, "Photo has been taken successfully!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TaskPhotoActivity.this, getText(R.string.photo_taken_successfully), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onError(@NonNull ImageCaptureException exception) {
-                        Toast.makeText(TaskPhotoActivity.this, "Error taking photo: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TaskPhotoActivity.this, getString(R.string.error_taking_photo) + exception.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
         );
@@ -180,13 +180,13 @@ public class TaskPhotoActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 // Handle unsuccessful uploads
-                Toast.makeText(TaskPhotoActivity.this, "Error saving photo: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(TaskPhotoActivity.this, getString(R.string.error_saving_photo) + exception.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                Toast.makeText(TaskPhotoActivity.this, "Photo has been saved successfully!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TaskPhotoActivity.this, getString(R.string.photo_saved_successfully), Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -1,17 +1,28 @@
 package com.example.adventureapp.model;
 
+import android.app.Application;
+import android.content.Context;
+import android.os.Bundle;
+
+import com.example.adventureapp.R;
+
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Tasks {
-
-    public List<String> tasks = Arrays.asList("Find mushrooms", "Find a river", "Find a big rock",
-            "Find an animal", "Find a windy trail", "Find a tall tree", "Find a bench", "Find a Y-Stick",
-            "Find a bird", "Find a trail-marker");
+public class Tasks extends Application {
+    Context ctx;
+    public List<String> tasks;
 
     public Tasks(){}
+
+    public Tasks(Context ctx){
+        this.ctx = ctx;
+        this.tasks = Arrays.asList(ctx.getString(R.string.find_mushrooms), ctx.getString(R.string.find_river), ctx.getString(R.string.find_big_rock),
+                ctx.getString(R.string.find_animal), ctx.getString(R.string.find_windy_trail), ctx.getString(R.string.find_tall_tree), ctx.getString(R.string.find_bench),
+                ctx.getString(R.string.find_ystick), ctx.getString(R.string.find_bird), ctx.getString(R.string.find_trail_marker));
+    }
 
     public Tasks(List<String> tasks) {
         this.tasks = tasks;

@@ -51,7 +51,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        //Placeholder function
         updateUI(currentUser);
     }
 
@@ -61,28 +60,6 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(i);
             this.finish();
         }
-//        if (user != null) {
-//            status.setText(getString(R.string.emailpassword_status_fmt,
-//                    user.getEmail(), user.isEmailVerified()));
-//            detail.setText(getString(R.string.firebase_status_fmt, user.getUid()));
-//
-//            emailPasswordButtons.setVisibility(View.GONE);
-//            emailPasswordFields.setVisibility(View.GONE);
-//            signedInButtons.setVisibility(View.VISIBLE);
-//
-//            if (user.isEmailVerified()) {
-//                verifyEmailButton.setVisibility(View.GONE);
-//            } else {
-//                verifyEmailButton.setVisibility(View.VISIBLE);
-//            }
-//        } else {
-//            status.setText(R.string.signed_out);
-//            detail.setText(null);
-//
-//            emailPasswordButtons.setVisibility(View.VISIBLE);
-//            emailPasswordFields.setVisibility(View.VISIBLE);
-//            signedInButtons.setVisibility(View.GONE);
-//        }
     }
 
     private void signIn(String email, String password) {
@@ -98,12 +75,10 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithEmail:failure", task.getException());
-                        Toast.makeText(LoginActivity.this, "Authentication failed.",
+                        Toast.makeText(LoginActivity.this, getString(R.string.authentication_failed),
                                 Toast.LENGTH_SHORT).show();
                         updateUI(null);
                     }
-
-                    // ...
                 });
     }
 

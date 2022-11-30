@@ -42,7 +42,7 @@ public class AdventureDisplayFragment extends Fragment implements View.OnClickLi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setRetainInstance(true);
-        adventureTasks = new Tasks();
+        adventureTasks = new Tasks(getContext());
         randomThreeTasks = adventureTasks.getThreeRandomTasks();
         super.onCreate(savedInstanceState);
     }
@@ -111,7 +111,7 @@ public class AdventureDisplayFragment extends Fragment implements View.OnClickLi
 
                 Adventure a = new Adventure(id, mAuth.getCurrentUser().getEmail(), adventureName, taskOne, taskTwo, taskThree);
                 if(adventureName == null || TextUtils.isEmpty(adventureName)){
-                    Toast.makeText(getActivity(), "Please enter adventure name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getString(R.string.enter_adventure_name), Toast.LENGTH_SHORT).show();
                 } else {
                     dao.add(id, a).addOnSuccessListener(suc -> {
                         Log.d(TAG, TAG + " finish db interaction");

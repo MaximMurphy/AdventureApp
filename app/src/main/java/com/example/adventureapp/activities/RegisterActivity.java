@@ -45,9 +45,9 @@ public class RegisterActivity extends AppCompatActivity {
             String confirmPassword = confirmPasswordEt.getText().toString();
 
             if(!password.equals(confirmPassword)){
-                Toast.makeText(this, "Passwords don't match", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.passwords_dont_match), Toast.LENGTH_SHORT).show();
             } else if(TextUtils.isEmpty(email) && TextUtils.isEmpty(password) && TextUtils.isEmpty(confirmPassword)){
-                Toast.makeText(this, "Please enter your information", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.please_enter_information), Toast.LENGTH_SHORT).show();
             } else {
                 createAccount(email, password);
             }
@@ -68,11 +68,9 @@ public class RegisterActivity extends AppCompatActivity {
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                        Toast.makeText(this, "Authentication failed.",
+                        Toast.makeText(this, getString(R.string.authentication_failed),
                                 Toast.LENGTH_SHORT).show();
                     }
-
-                    // ...
                 });
     }
 }

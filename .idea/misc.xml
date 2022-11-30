@@ -28,10 +28,11 @@
         <entry key="app/src/main/res/layout/activity_home_page.xml" value="0.15625" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.15625" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_past_adventures.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_photo_display.xml" value="0.15625" />
         <entry key="app/src/main/res/layout/activity_photo_selector.xml" value="0.15625" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.15081521739130435" />
-        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.20641489541035413" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_task_photo.xml" value="0.15625" />
         <entry key="app/src/main/res/layout/fragment_adventure_display.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_past_adventure.xml" value="0.1" />
