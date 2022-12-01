@@ -28,6 +28,8 @@
     <string name="view">View</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
+    <string name="save">Save</string>
+    <string name="new_name">New Name</string>
 
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

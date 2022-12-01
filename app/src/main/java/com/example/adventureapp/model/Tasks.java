@@ -32,6 +32,9 @@ public class Tasks extends Application {
         return tasks;
     }
 
+    public void setTasks(List<String> tasks){
+        this.tasks = tasks;
+    }
     public List<String> getThreeRandomTasks(){
         List<String> adventureTasks = new ArrayList<>();
 

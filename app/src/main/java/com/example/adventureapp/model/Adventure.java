@@ -8,6 +8,8 @@ public class Adventure {
     private String id, user, adventureName, taskOne, taskTwo, taskThree;
     public Adventure(){}
 
+
+
     public Adventure(String id, String user, String adventureName, String taskOne, String taskTwo, String taskThree) {
         this.id = id;
         this.user = user;
@@ -31,7 +33,9 @@ public class Adventure {
     public String getAdventureName() {
         return adventureName;
     }
-
+    public void setId(String id) {
+        this.id = id;
+    }
     public void setUser(String user) {
         this.user = user;
     }

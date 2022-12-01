@@ -26,12 +26,6 @@ public class AdventureAdapter extends RecyclerView.Adapter<AdventureAdapter.Adve
     ArrayList<Adventure> adventures;
     private String id;
 
-    private ClickListener editListener, deleteListener;
-
-    public interface ClickListener {
-        void onItemClicked(Adventure adventure);
-    }
-
     public AdventureAdapter(Context context, ArrayList<Adventure> list){
         this.context = context;
         this.adventures = list;
@@ -87,8 +81,6 @@ public class AdventureAdapter extends RecyclerView.Adapter<AdventureAdapter.Adve
             viewButton.setOnClickListener(this);
             deleteButton.setOnClickListener(this);
             saveEditButton.setOnClickListener(this);
-
-            //Toast.makeText(context, "id:" + id, Toast.LENGTH_SHORT).show();
         }
 
         @Override
