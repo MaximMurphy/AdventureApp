@@ -46,8 +46,9 @@ public class AdventureAdapter extends RecyclerView.Adapter<AdventureAdapter.Adve
         holder.taskOne.setText(adventure.getTaskOne());
         holder.taskTwo.setText(adventure.getTaskTwo());
         holder.taskThree.setText(adventure.getTaskThree());
-        id = adventure.getId();
+        holder.idValue.setText(adventure.getId());
 
+        //Toast.makeText(context, "id:" + adventure.getId(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -58,7 +59,7 @@ public class AdventureAdapter extends RecyclerView.Adapter<AdventureAdapter.Adve
     public class AdventureViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         Button editButton, viewButton, deleteButton, saveEditButton;
         EditText newNameEditText;
-        TextView adventureName, taskOne, taskTwo, taskThree;
+        TextView adventureName, taskOne, taskTwo, taskThree, idValue;
 
         DAOAdventure dao;
         public AdventureViewHolder(@NonNull View itemView){
@@ -74,6 +75,7 @@ public class AdventureAdapter extends RecyclerView.Adapter<AdventureAdapter.Adve
             taskOne = itemView.findViewById(R.id.taskOneTextView);
             taskTwo = itemView.findViewById(R.id.taskTwoTextView);
             taskThree = itemView.findViewById(R.id.taskThreeTextView);
+            idValue = itemView.findViewById(R.id.idHolder);
 
             dao = new DAOAdventure();
 
@@ -88,7 +90,6 @@ public class AdventureAdapter extends RecyclerView.Adapter<AdventureAdapter.Adve
             switch (v.getId()){
                 case R.id.editButton:
 
-
                     newNameEditText.setVisibility(View.VISIBLE);
                     saveEditButton.setVisibility(View.VISIBLE);
                     break;
@@ -97,7 +98,7 @@ public class AdventureAdapter extends RecyclerView.Adapter<AdventureAdapter.Adve
                     saveEditButton.setVisibility(View.GONE);
 
                     Intent intent = new Intent(context, PhotoSelectorActivity.class);
-                    intent.putExtra("ADVENTURE_ID", id);
+                    intent.putExtra("ADVENTURE_ID", idValue.getText());
                     intent.putExtra("ADVENTURE_NAME", adventureName.getText().toString());
                     intent.putExtra("TASK_ONE", taskOne.getText().toString());
                     intent.putExtra("TASK_TWO", taskTwo.getText().toString());
