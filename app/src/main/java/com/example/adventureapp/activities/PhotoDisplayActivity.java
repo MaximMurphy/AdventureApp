@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.LruCache;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ public class PhotoDisplayActivity extends AppCompatActivity {
 
     private TextView taskName;
     private ImageView photo;
-    private String id, name;
+    private String id, name, filename;
     private StorageReference storageReference;
 
     @Override
@@ -40,25 +41,34 @@ public class PhotoDisplayActivity extends AppCompatActivity {
         taskName = findViewById(R.id.adventureName);
         taskName.setText(name);
 
-        storageReference = FirebaseStorage.getInstance().getReference().child(id + "/" + taskName.getText().toString());
-        try {
-            final File localFile = File.createTempFile(taskName.getText().toString(), "jpg");
+        filename = taskName.getText().toString();
+
+        File file = new File(this.getCacheDir(), filename);
+        if(file.exists()){
+            //Toast.makeText(PhotoDisplayActivity.this, "File Exists!", Toast.LENGTH_SHORT).show();
+            Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+            photo.setImageBitmap(bitmap);
+        }else {
+            //Toast.makeText(PhotoDisplayActivity.this, "File Does Not Exists", Toast.LENGTH_SHORT).show();
+
+            storageReference = FirebaseStorage.getInstance().getReference().child(id + "/" + filename);
+            final File localFile = new File(this.getCacheDir(), filename);
             storageReference.getFile(localFile)
                     .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(PhotoDisplayActivity.this, getString(R.string.photo_retrieved), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(PhotoDisplayActivity.this, "Photo Retrieved", Toast.LENGTH_SHORT).show();
                             Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                             photo.setImageBitmap(bitmap);
+
                         }
-                    }) .addOnFailureListener(new OnFailureListener() {
+                    }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Toast.makeText(PhotoDisplayActivity.this, getString(R.string.error_occured) + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
-        } catch(IOException e){
-            e.printStackTrace();
         }
     }
+
 }
